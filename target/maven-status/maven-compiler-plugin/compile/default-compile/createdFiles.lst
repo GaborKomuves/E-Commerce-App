@@ -1,7 +1,0 @@
-com\diy\e_commerce_app\repositories\ProductRepository.class
-com\diy\e_commerce_app\controllers\ProductController.class
-com\diy\e_commerce_app\ECommerceApplication.class
-com\diy\e_commerce_app\services\ProductService.class
-com\diy\e_commerce_app\config\WebConfig.class
-com\diy\e_commerce_app\models\Product.class
-com\diy\e_commerce_app\config\WebConfig$1.class
