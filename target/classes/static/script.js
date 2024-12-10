@@ -1,21 +1,30 @@
-const openFormButton = document.getElementById('openFormButton');
-const productForm = document.getElementById('productForm');
-const productsSection = document.getElementById('products');
+document.getElementById('productForm').addEventListener('submit', function (event) {
+    event.preventDefault();
 
-// Show the form and dim the background
-openFormButton.addEventListener('click', () => {
-    productForm.classList.add('active');
-    productsSection.classList.add('dim');
+    const name = document.getElementById('name').value;
+    const price = parseFloat(document.getElementById('price').value);
+    const description = document.getElementById('description').value;
+    const stock = parseInt(document.getElementById('stock').value, 10);
+    const category = document.getElementById('category').value;
+
+    const product = { name, price, description, stock, category };
+
+    addProductToList(product);
+
+    document.getElementById('productForm').reset();
 });
 
-// Hide the form and restore the background when clicking outside the form
-document.addEventListener('click', (event) => {
-    if (
-        productForm.classList.contains('active') &&
-        !productForm.contains(event.target) &&
-        event.target.id !== 'openFormButton'
-    ) {
-        productForm.classList.remove('active');
-        productsSection.classList.remove('dim');
-    }
-});
+function addProductToList(product) {
+    const productList = document.getElementById('productList');
+
+    const productElement = document.createElement('div');
+    productElement.innerHTML = `
+        <strong>${product.name}</strong>
+        <p>Price: $${product.price.toFixed(2)}</p>
+        <p>Description: ${product.description}</p>
+        <p>Stock: ${product.stock}</p>
+        <p>Category: ${product.category}</p>
+    `;
+
+    productList.appendChild(productElement);
+}

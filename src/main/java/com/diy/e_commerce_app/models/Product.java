@@ -28,8 +28,6 @@ public class Product {
     @NotNull
     private Integer stock;
 
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @NotNull
+    private String category;
 }
