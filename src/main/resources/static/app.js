@@ -17,6 +17,7 @@ function loadProducts() {
                     <td>${product.price}</td>
                     <td>${product.stock}</td>
                     <td>${product.description}</td>
+                    <td>${product.category}</td>
                     <td>
                         <button onclick="editProduct(${product.id})">Edit</button>
                         <button onclick="deleteProduct(${product.id})">Delete</button>
@@ -30,13 +31,15 @@ function loadProducts() {
 
 document.getElementById("form").addEventListener("submit", function (event) {
     event.preventDefault();
+
     const id = document.getElementById("productId").value;
     const name = document.getElementById("name").value;
     const price = document.getElementById("price").value;
     const stock = document.getElementById("stock").value;
     const description = document.getElementById("description").value;
+    const category = document.getElementById("category").value; // Get selected category
 
-    const product = { name, price, stock, description };
+    const product = { name, price, stock, description, category };
 
     if (id) {
         // Update product
@@ -60,6 +63,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
 
     // Reset form
     document.getElementById("form").reset();
+    document.getElementById("productId").value = ""; // Clear hidden ID field
 });
 
 function editProduct(id) {
@@ -71,6 +75,7 @@ function editProduct(id) {
             document.getElementById("price").value = product.price;
             document.getElementById("stock").value = product.stock;
             document.getElementById("description").value = product.description;
+            document.getElementById("category").value = product.category; // Populate category
         })
         .catch(error => console.error("Error fetching product:", error));
 }

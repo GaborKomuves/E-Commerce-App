@@ -28,6 +28,7 @@
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Description</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -50,6 +51,12 @@
             <input type="number" id="stock" required>
             <label for="description">Description:</label>
             <textarea id="description" rows="3" required></textarea>
+            <label for="category">Category:</label>
+            <select id="category" required>
+                <option value="PPE">Personal Protective Equipment</option>
+                <option value="TOOLS">Tools</option>
+                <option value="ELECTRONICS">Electronics</option>
+            </select>
             <button type="submit">Save</button>
         </form>
     </section>
