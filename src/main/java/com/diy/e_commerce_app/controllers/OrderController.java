@@ -25,11 +25,17 @@ public class OrderController {
      * @param customerEmail the customer's email address.
      * @return the created order.
      */
+//    @PostMapping("/place")
+//    public Order placeOrder(@RequestBody PlaceOrderRequest request) {
+//        System.out.println("Placing order for: " + request.getCustomerName());
+//        return orderService.placeOrder(request.getCustomerName(), request.getCustomerEmail());
+//    }
+
     @PostMapping("/place")
     public Order placeOrder(@RequestBody PlaceOrderRequest request) {
-        System.out.println("Placing order for: " + request.getCustomerName());
         return orderService.placeOrder(request.getCustomerName(), request.getCustomerEmail());
     }
+
 
 
     /**
