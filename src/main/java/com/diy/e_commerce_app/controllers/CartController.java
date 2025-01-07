@@ -14,8 +14,12 @@ import java.util.List;
 @RequestMapping("/api/cart")
 public class CartController {
 
-    @Autowired
-    private CartService cartService;
+
+    private final CartService cartService;//l am facut final
+
+    public CartController ( CartService cartService ) {// aici am adugat constructorul
+        this.cartService = cartService;
+    }
 
     /**
      * Adds a product to the cart or updates its quantity.

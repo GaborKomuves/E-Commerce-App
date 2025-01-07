@@ -3,7 +3,6 @@ package com.diy.e_commerce_app.controllers;
 import com.diy.e_commerce_app.dto.PlaceOrderRequest;
 import com.diy.e_commerce_app.models.Order;
 import com.diy.e_commerce_app.services.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,14 +14,17 @@ import java.util.List;
 @RequestMapping("/api/orders")
 public class OrderController {
 
-    @Autowired
-    private OrderService orderService;
+
+    private final OrderService orderService;//am sters @Autowired si facut final
+
+    public OrderController ( OrderService orderService ) {
+        this.orderService = orderService;
+    }
 
     /**
      * Places a new order based on the current cart items.
      *
-     * @param customerName  the customer's name.
-     * @param customerEmail the customer's email address.
+     * @param request  the customer's name.
      * @return the created order.
      */
     @PostMapping("/place")
@@ -30,8 +32,6 @@ public class OrderController {
         System.out.println("Placing order for: " + request.getCustomerName());
         return orderService.placeOrder(request.getCustomerName(), request.getCustomerEmail());
     }
-
-
 
 
 

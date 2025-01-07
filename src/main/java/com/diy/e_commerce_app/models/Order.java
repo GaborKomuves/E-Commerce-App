@@ -28,9 +28,8 @@ public class Order {
     @NotNull
     private BigDecimal totalAmount;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private List<CartItem> items;
+    @NotNull
+    private String itemsDescription; // Placeholder for items' description (e.g., "Product A x 2, Product B x 1")
 
     @NotNull
     private String customerName;
@@ -41,5 +40,7 @@ public class Order {
 
     private LocalDateTime orderDate;
 
-}
 
+    public void setItems ( List<CartItem> cartItems ) {
+    }
+}
