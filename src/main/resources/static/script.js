@@ -1,47 +1,29 @@
-const openFormButton = document.getElementById('openFormButton');
-const productForm = document.getElementById('productForm');
-const productsSection = document.getElementById('products');
 
-openFormButton.addEventListener('click', () => {
-    productForm.classList.add('active');
-    productsSection.classList.add('dim');
+document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+    });
 });
 
-document.addEventListener('click', (event) => {
-    if (
-        productForm.classList.contains('active') &&
-        !productForm.contains(event.target) &&
-        event.target.id !== 'openFormButton'
-    ) {
-        productForm.classList.remove('active');
-        productsSection.classList.remove('dim');
-    }
+// Example logic for tabs (implement data fetching based on your API endpoints)
+// High Price Filter
+document.getElementById('highPriceFilter').addEventListener('click', () => {
+    console.log('Filter by High Price');
+    // Fetch data and update products table
 });
 
-document.getElementById('form').addEventListener('submit', (event) => {
-    event.preventDefault();
+// Low Stock Filter
+document.getElementById('lowStockFilter').addEventListener('click', () => {
+    console.log('Filter by Low Stock');
+    // Fetch data and update products table
+});
 
-    const id = document.getElementById('productId').value;
-    const name = document.getElementById('name').value;
-    const price = parseFloat(document.getElementById('price').value).toFixed(2);
-    const stock = parseInt(document.getElementById('stock').value, 10);
-    const description = document.getElementById('description').value;
-    const category = document.getElementById('category').value;
-
-    const product = { name, price, stock, description, category };
-
-    const url = id ? `${baseUrl}/${id}` : baseUrl;
-    const method = id ? "PUT" : "POST";
-
-    fetch(url, {
-        method: method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product)
-    })
-        .then(() => loadProducts())
-        .catch(error => console.error("Error saving product:", error));
-
-    productForm.classList.remove('active');
-    productsSection.classList.remove('dim');
-    document.getElementById('form').reset();
+// Category Filter
+document.getElementById('categoryFilter').addEventListener('click', () => {
+    console.log('Filter by Category');
+    // Fetch data and update products table
 });

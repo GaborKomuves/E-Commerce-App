@@ -3,18 +3,26 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: #f3f4f6;
     color: #333;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
     padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Header Styles */
 header {
-    background-color: #4CAF50;
+    background: linear-gradient(to right, #4CAF50, #45a049);
     color: white;
     padding: 15px 0;
     text-align: center;
@@ -48,9 +56,10 @@ footer p {
 
 /* Table Styles */
 table {
-    width: 100%;
+    width: 90%;
+    max-width: 1200px;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin: 20px auto;
     background-color: white;
     border-radius: 8px;
     overflow: hidden;
@@ -65,7 +74,8 @@ table th, table td {
 }
 
 table th {
-    background-color: #f4f4f4;
+    background-color: #4CAF50;
+    color: white;
     font-weight: bold;
 }
 
@@ -83,16 +93,48 @@ table tr:hover {
 
 /* Button Styles */
 button {
-    padding: 8px 15px;
+    padding: 10px 20px;
     font-size: 1rem;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s;
+    margin: 5px;
 }
 
 button:hover {
     opacity: 0.9;
+}
+
+button.edit {
+    background-color: #007bff;
+    color: white;
+}
+
+button.edit:hover {
+    background-color: #0056b3;
+}
+
+button.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+button.delete:hover {
+    background-color: #c82333;
+}
+
+/* Add Product Button Styles */
+#openFormButton {
+    background-color: #17a2b8;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+#openFormButton:hover {
+    background-color: #138496;
 }
 
 /* Form Styles */
@@ -100,6 +142,10 @@ form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    align-items: center;
+    max-width: 400px;
+    width: 90%;
+    margin: 0 auto;
 }
 
 #productForm {
@@ -121,68 +167,30 @@ form {
     display: block;
 }
 
-#lowStockFilter {
-    margin: 20px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+/* Responsive Styles */
+@media (max-width: 768px) {
+    table th, table td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    #openFormButton {
+        font-size: 1rem;
+    }
 }
 
-/* General Button Styles */
-button {
-    padding: 8px 15px;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s, color 0.3s;
-}
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
 
-/* Default Button Style */
-button {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-}
+    table th, table td {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
 
-/* Hover Effect for Buttons */
-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-    color: white; /* Keep the text white */
+    button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
 }
-
-/* Edit Button Styles */
-button.edit {
-    background-color: #007bff; /* Blue background for edit */
-    color: white;
-}
-
-button.edit:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    color: white;
-}
-
-/* Delete Button Styles */
-button.delete {
-    background-color: #dc3545; /* Red background for delete */
-    color: white;
-}
-
-button.delete:hover {
-    background-color: #c82333; /* Darker red on hover */
-    color: white;
-}
-
-/* Add Product Button Styles */
-#openFormButton {
-    background-color: #17a2b8; /* Teal background for Add Product */
-    color: white;
-    padding: 10px 20px;
-    font-size: 1.1rem;
-}
-
-#openFormButton:hover {
-    background-color: #138496; /* Darker teal on hover */
-    color: white;
-}
-

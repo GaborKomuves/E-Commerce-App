@@ -5,10 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Repository interface for managing Order entities.
+ * Repozitoriu pentru entitatea Order.
+ * Asigură operații CRUD pentru tabela "orders".
  */
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    // Custom query methods (if needed) can be added here.
 }
-

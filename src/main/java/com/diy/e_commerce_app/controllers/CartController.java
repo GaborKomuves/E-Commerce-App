@@ -2,62 +2,63 @@ package com.diy.e_commerce_app.controllers;
 
 import com.diy.e_commerce_app.models.CartItem;
 import com.diy.e_commerce_app.services.CartService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-/**
- * Controller for managing the shopping cart.
- */
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/api/cart") // Prefix pentru toate endpoint-urile din acest controller
 public class CartController {
 
+    private final CartService cartService;
 
-    private final CartService cartService;//l am facut final
-
-    public CartController ( CartService cartService ) {// aici am adugat constructorul
+    public CartController(CartService cartService) {
         this.cartService = cartService;
     }
 
     /**
-     * Adds a product to the cart or updates its quantity.
+     * Adaugă un element în coș.
      *
-     * @param productId the ID of the product to add.
-     * @param quantity  the quantity to add.
-     * @return the updated cart item.
+     * @param requestBody JSON care conține productId și quantity
+     * @return Elementul adăugat în coș
      */
     @PostMapping("/add")
-    public CartItem addToCart(@RequestParam Long productId, @RequestParam Integer quantity) {
-        return cartService.addToCart(productId, quantity);
+    public CartItem addCartItem(@RequestBody Map<String, Object> requestBody) {
+        Long productId = Long.valueOf(requestBody.get("productId").toString());
+        Integer quantity = Integer.valueOf(requestBody.get("quantity").toString());
+        return cartService.addCartItem(productId, quantity);
     }
 
     /**
-     * Retrieves all items in the cart.
+     * Actualizează cantitatea unui element din coș.
      *
-     * @return a list of cart items.
+     * @param id ID-ul elementului din coș
+     * @param updatedCartItem Obiectul cu datele actualizate
+     * @return Elementul actualizat
      */
-    @GetMapping
+    @PutMapping("/items/{id}")
+    public CartItem updateCartItem(@PathVariable Long id, @RequestBody CartItem updatedCartItem) {
+        return cartService.updateCartItem(id, updatedCartItem);
+    }
+
+    /**
+     * Obține toate elementele din coș.
+     *
+     * @return Lista cu toate elementele din coș
+     */
+    @GetMapping("/items")
     public List<CartItem> getCartItems() {
         return cartService.getCartItems();
     }
 
     /**
-     * Removes an item from the cart.
+     * Șterge un element din coș.
      *
-     * @param cartItemId the ID of the cart item to remove.
+     * @param cartItemId ID-ul elementului care trebuie șters
      */
-    @DeleteMapping("/{cartItemId}")
-    public void removeFromCart(@PathVariable Long cartItemId) {
-        cartService.removeFromCart(cartItemId);
-    }
-
-    /**
-     * Clears the entire cart.
-     */
-    @DeleteMapping("/clear")
-    public void clearCart() {
-        cartService.clearCart();
+    @DeleteMapping("/delete/{cartItemId}")
+    public void deleteCartItem(@PathVariable Long cartItemId) {
+        cartService.deleteCartItem(cartItemId);
     }
 }
